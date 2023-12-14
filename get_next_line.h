@@ -6,7 +6,7 @@
 /*   By: lkirillo <lkirillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 21:04:56 by lisakirillo       #+#    #+#             */
-/*   Updated: 2023/12/14 21:28:56 by lkirillo         ###   ########.fr       */
+/*   Updated: 2023/12/14 23:39:31 by lkirillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ typedef struct s_list
 {
 	char			*str_buffer;
 	struct s_list	*next;
-}				    t_list;
+}					t_list;
 
 char	*get_next_line(int fd);
 void	create_list(t_list **list, int fd);
-char    *line_plus_plus(t_list *list);
+char	*line_plus_plus(t_list *list);
 void	clean_the_static(t_list **list);
 void	need_to_free(t_list **list, t_list *clean_node, char *buffer);
 void	copy_str(t_list *list, char *str);

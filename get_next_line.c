@@ -6,7 +6,7 @@
 /*   By: lkirillo <lkirillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 21:28:44 by lkirillo          #+#    #+#             */
-/*   Updated: 2023/12/14 21:28:44 by lkirillo         ###   ########.fr       */
+/*   Updated: 2023/12/14 23:41:44 by lkirillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	need_to_free(t_list **list, t_list *clean_node, char *buffer)
 	*list = NULL;
 	if (clean_node->str_buffer[0])
 		*list = clean_node;
-	else 
+	else
 	{
 		free(buffer);
 		free(clean_node);
@@ -60,20 +60,19 @@ void	clean_the_static(t_list **list)
 	need_to_free(list, clean_node, buffer);
 }
 
-char    *line_plus_plus(t_list *list)
+char	*line_plus_plus(t_list *list)
 {
-    int     new_str_len;
-    char    *next_str;
+	int		new_str_len;
+	char	*next_str;
 
-    if (list == NULL)
-        return (NULL);
-    new_str_len = len_till_newline(list);
-    next_str = malloc(new_str_len + 1);
-    if (next_str == NULL)
-        return (NULL);
-    copy_str(list, next_str);
-    return (next_str);
-
+	if (list == NULL)
+		return (NULL);
+	new_str_len = len_till_newline(list);
+	next_str = malloc(new_str_len + 1);
+	if (next_str == NULL)
+		return (NULL);
+	copy_str(list, next_str);
+	return (next_str);
 }
 
 void	create_list(t_list **list, int fd)
@@ -99,24 +98,24 @@ void	create_list(t_list **list, int fd)
 
 char	*get_next_line(int fd)
 {
-    static t_list   *static_list = NULL;
-    char            *next_line;
+	static t_list	*static_list = NULL;
+	char			*next_line;
 
-    if (fd < 0 || BUFFER_SIZE <= 0 || read (fd, &next_line, 0) < 0)
-    {
-        if (static_list != NULL)
-        {
-            free(static_list->str_buffer);
-            static_list->str_buffer = NULL;
-        }
-        free(static_list);
-        static_list = NULL;
-        return (NULL);
-    }
-    create_list(&static_list, fd);
-    if (static_list == NULL)
-        return (NULL);
-    next_line = line_plus_plus(static_list);
-    clean_the_static(&static_list);
-    return (next_line);
-} 
+	if (fd < 0 || BUFFER_SIZE <= 0 || read (fd, &next_line, 0) < 0)
+	{
+		if (static_list != NULL)
+		{
+			free(static_list->str_buffer);
+			static_list->str_buffer = NULL;
+		}
+		free(static_list);
+		static_list = NULL;
+		return (NULL);
+	}
+	create_list(&static_list, fd);
+	if (static_list == NULL)
+		return (NULL);
+	next_line = line_plus_plus(static_list);
+	clean_the_static(&static_list);
+	return (next_line);
+}

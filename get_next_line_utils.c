@@ -6,7 +6,7 @@
 /*   By: lkirillo <lkirillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 21:09:13 by lisakirillo       #+#    #+#             */
-/*   Updated: 2023/12/14 21:29:04 by lkirillo         ###   ########.fr       */
+/*   Updated: 2023/12/14 23:42:09 by lkirillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int	is_new_line(t_list *list)
 {
 	int	i;
+
 	if (list == NULL)
 		return (0);
 	while (list)
@@ -30,6 +31,7 @@ int	is_new_line(t_list *list)
 	}
 	return (0);
 }
+
 void	add_the_node(t_list **list, char *buffer)
 {
 	t_list	*new_node;
@@ -38,7 +40,7 @@ void	add_the_node(t_list **list, char *buffer)
 	last_node = (is_last_node(*list));
 	new_node = malloc (sizeof(t_list));
 	if (new_node == NULL)
-	return ;
+		return ;
 	if (last_node == NULL)
 		*list = new_node;
 	else
