@@ -5,13 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lkirillo <lkirillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/14 21:28:44 by lkirillo          #+#    #+#             */
-/*   Updated: 2023/12/14 23:41:44 by lkirillo         ###   ########.fr       */
+/*   Created: 2023/12/15 14:10:26 by lkirillo          #+#    #+#             */
+/*   Updated: 2023/12/16 13:20:43 by lkirillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
 void	need_to_free(t_list **list, t_list *clean_node, char *buffer)
 {
 	t_list	*temp;
