@@ -1,40 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lkirillo <lkirillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 14:20:24 by lkirillo          #+#    #+#             */
-/*   Updated: 2024/01/05 20:30:21 by lkirillo         ###   ########.fr       */
+/*   Updated: 2024/01/05 20:30:54 by lkirillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*get_next_line(int fd)
 {
-	static char	*remainder;
+	static char	*remainder[MAX_FD];
 	char		*line;
 	char		*buffer;
 
 	buffer = malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 	{
-		free(remainder);
+		free(remainder[fd]);
 		free(buffer);
-		remainder = NULL;
+		remainder[fd] = NULL;
 		buffer = NULL;
 		return (0);
 	}
 	if (!buffer)
 		return (NULL);
-	line = line_in_buffersize(fd, remainder, buffer);
+	line = line_in_buffersize(fd, remainder[fd], buffer);
 	free(buffer);
 	buffer = NULL;
 	if (!line)
 		return (NULL);
-	remainder = left_after_line(line);
+	remainder[fd] = left_after_line(line);
 	return (line);
 }
 
