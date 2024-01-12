@@ -6,7 +6,7 @@
 /*   By: lkirillo <lkirillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 14:20:24 by lkirillo          #+#    #+#             */
-/*   Updated: 2024/01/05 20:30:21 by lkirillo         ###   ########.fr       */
+/*   Updated: 2024/01/12 15:17:32 by lkirillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ char	*line_in_buffersize(int fd, char *remainder, char *buffer)
 		}
 		else if (res_read == 0)
 			break ;
-		buffer[res_read] = 0;
+		buffer[res_read] = '\0';
 		if (!remainder)
 			remainder = ft_strdup("");
 		temp = remainder;
@@ -100,3 +100,16 @@ char	*ft_strchr(const char *str, int c)
 		return ((char *)str);
 	return (NULL);
 }
+
+// #include <fcntl.h>
+// #include <stdio.h>
+// #include <unistd.h>
+// int	main(void)
+// {
+// 	int fd = open ("ft_vibes.txt", O_RDONLY);
+// 	printf("The line is %s\n", get_next_line(fd));
+// 	printf("The line is %s\n", get_next_line(fd));
+// 	printf("The line is %s\n", get_next_line(fd));
+// 	printf("The line is %s\n", get_next_line(fd));
+// 	return (0);
+// }
