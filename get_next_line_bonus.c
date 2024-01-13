@@ -6,7 +6,7 @@
 /*   By: lkirillo <lkirillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 14:20:24 by lkirillo          #+#    #+#             */
-/*   Updated: 2024/01/05 20:30:54 by lkirillo         ###   ########.fr       */
+/*   Updated: 2024/01/13 17:56:27 by lkirillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,22 +18,25 @@ char	*get_next_line(int fd)
 	char		*line;
 	char		*buffer;
 
-	buffer = malloc((BUFFER_SIZE + 1) * sizeof(char));
+	buffer = NULL;
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 	{
 		free(remainder[fd]);
 		free(buffer);
 		remainder[fd] = NULL;
-		buffer = NULL;
-		return (0);
+		return (NULL);
 	}
+	buffer = malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!buffer)
 		return (NULL);
 	line = line_in_buffersize(fd, remainder[fd], buffer);
 	free(buffer);
 	buffer = NULL;
 	if (!line)
+	{
+		remainder[fd] = NULL;
 		return (NULL);
+	}
 	remainder[fd] = left_after_line(line);
 	return (line);
 }
@@ -82,7 +85,7 @@ char	*line_in_buffersize(int fd, char *remainder, char *buffer)
 		remainder = ft_strjoin(temp, buffer);
 		free(temp);
 		temp = NULL;
-		if (strchr(buffer, '\n'))
+		if (ft_strchr(buffer, '\n'))
 			break ;
 	}
 	return (remainder);
@@ -100,3 +103,16 @@ char	*ft_strchr(const char *str, int c)
 		return ((char *)str);
 	return (NULL);
 }
+
+// #include <fcntl.h>
+// #include <stdio.h>
+// #include <unistd.h>
+// int	main(void)
+// {
+// 	int fd = open ("ft_vibes.txt", O_RDONLY);
+// 	printf("The line is %s\n", get_next_line(fd + 1));
+// 	printf("The line is %s\n", get_next_line(fd + 2));
+// 	printf("The line is %s\n", get_next_line(fd + 3));
+// 	printf("The line is %s\n", get_next_line(fd + 4));
+// 	return (0);
+// }

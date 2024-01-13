@@ -6,7 +6,7 @@
 /*   By: lkirillo <lkirillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 14:20:24 by lkirillo          #+#    #+#             */
-/*   Updated: 2024/01/12 15:17:32 by lkirillo         ###   ########.fr       */
+/*   Updated: 2024/01/13 15:39:24 by lkirillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ char	*line_in_buffersize(int fd, char *remainder, char *buffer)
 		remainder = ft_strjoin(temp, buffer);
 		free(temp);
 		temp = NULL;
-		if (strchr(buffer, '\n'))
+		if (ft_strchr(buffer, '\n'))
 			break ;
 	}
 	return (remainder);
